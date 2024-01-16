@@ -15,7 +15,7 @@ jobs:
       matrix:
         python-version: [3.11, 3.12]
 
-    environment: .env 
+    environment: .env
 
     env:
       DEBUG: True
