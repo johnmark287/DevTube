@@ -13,5 +13,5 @@ urlpatterns = [
         TemplateView.as_view(template_name="password_reset_confirm.html"),
         name="password_reset_confirm",
     ),
-    path("google/", views.GoogleLogin.as_view(), name="google_login"),
+    path("auth/google/", views.GoogleLogin.as_view(), name="google_login"),
 ]
