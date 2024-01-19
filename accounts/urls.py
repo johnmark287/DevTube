@@ -1,9 +1,6 @@
-from django.urls import path, include
-from dj_rest_auth.registration.views import RegisterView
-from dj_rest_auth.views import LoginView, LogoutView, UserDetailsView
+from django.urls import include, path
 from django.views.generic import TemplateView
 from . import views
-
 
 urlpatterns = [
     # dj-rest-auth common endpoints
@@ -16,9 +13,5 @@ urlpatterns = [
         TemplateView.as_view(template_name="password_reset_confirm.html"),
         name="password_reset_confirm",
     ),
-    path("register/", RegisterView.as_view(), name="rest_register"),
-    path("login/", LoginView.as_view(), name="rest_login"),
-    path("logout/", LogoutView.as_view(), name="rest_logout"),
-    path("user/", UserDetailsView.as_view(), name="rest_user_details"),
     path("google/", views.GoogleLogin.as_view(), name="google_login"),
 ]
