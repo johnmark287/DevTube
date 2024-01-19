@@ -1,5 +1,6 @@
 from django.urls import include, path
 from django.views.generic import TemplateView
+from . import views
 
 urlpatterns = [
     # dj-rest-auth common endpoints
@@ -12,4 +13,5 @@ urlpatterns = [
         TemplateView.as_view(template_name="password_reset_confirm.html"),
         name="password_reset_confirm",
     ),
+    path("auth/google/", views.GoogleLogin.as_view(), name="google_login"),
 ]

@@ -33,24 +33,30 @@ ALLOWED_HOSTS = config("ALLOWED_HOSTS", default="127.0.0.1, localhost", cast=Csv
 # Application definition
 
 INSTALLED_APPS = [
+    # Django Core Apps
     "django.contrib.admin",
+    "django.contrib.sites",
     "django.contrib.auth",
     "django.contrib.contenttypes",
     "django.contrib.sessions",
     "django.contrib.messages",
     "django.contrib.staticfiles",
-    "django.contrib.sites",
+    # Third-party Packages
     "corsheaders",
     "rest_framework",
     "rest_framework.authtoken",
-    "dj_rest_auth",
-    "dj_rest_auth.registration",
+    # Authentication and Authorization
     "allauth",
     "allauth.account",
     "allauth.socialaccount",
     "allauth.socialaccount.providers.google",
+    # Custom Apps
     "accounts.apps.AccountsConfig",
+    # Django REST Auth
+    "dj_rest_auth",
+    "dj_rest_auth.registration",
 ]
+
 
 MIDDLEWARE = [
     "django.middleware.security.SecurityMiddleware",
@@ -163,12 +169,14 @@ else:
 
 REST_FRAMEWORK = {
     "DEFAULT_AUTHENTICATION_CLASSES": [
+        "rest_framework.authentication.BasicAuthentication",
         "rest_framework.authentication.SessionAuthentication",
         "rest_framework.authentication.TokenAuthentication",
-        "dj_rest_auth.jwt_auth.JWTCookieAuthentication",
+    ],
+    "DEFAULT_PERMISSION_CLASSES": [
+        "rest_framework.permissions.IsAuthenticated",
     ],
 }
-
 REST_AUTH = {
     "USE_JWT": True,
     "JWT_AUTH_COOKIE": "auth",
@@ -196,6 +204,11 @@ SOCIALACCOUNT_PROVIDERS = {
         }
     }
 }
+
+# AUTHENTICATION_BACKENDS = [
+#     "django.contrib.auth.backends.ModelBackend",
+#     "social_core.backends.google.GoogleOAuth2",
+# ]
 
 # Email settings
 if DEBUG:
