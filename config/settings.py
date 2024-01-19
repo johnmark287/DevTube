@@ -173,6 +173,9 @@ REST_AUTH = {
     "USE_JWT": True,
     "JWT_AUTH_COOKIE": "auth",
     "JWT_AUTH_REFRESH_COOKIE": "refresh-auth",
+    "JWT_AUTH_HTTPONLY": False,
+    "LOGIN_SERIALIZER": "accounts.serializers.MyLoginSerializer",
+    "PASSWORD_RESET_SERIALIZER": "accounts.serializers.MyPasswordResetSerializer",
 }
 
 SITE_ID = 1
@@ -213,3 +216,8 @@ EMAIL_PORT = config("EMAIL_PORT", default=587, cast=int)
 EMAIL_HOST_USER = config("EMAIL_HOST_USER", default="your_email_address")
 EMAIL_HOST_PASSWORD = config("EMAIL_HOST_PASSWORD", default="your_password")
 DEFAULT_FROM_EMAIL = "DevTube"
+
+# Frontend URLs
+FRONT_END_URLS = {
+    "PASSWORD_RESET": "http://localhost:3000/password-reset",
+}
