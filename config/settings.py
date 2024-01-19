@@ -194,6 +194,13 @@ SOCIALACCOUNT_PROVIDERS = {
     }
 }
 
+
+REST_FRAMEWORK = {
+    "DEFAULT_AUTHENTICATION_CLASSES": [
+        "rest_framework.authentication.TokenAuthentication",
+    ]
+}
+
 # Email settings
 if DEBUG:
     EMAIL_BACKEND = "django.core.mail.backends.console.EmailBackend"
