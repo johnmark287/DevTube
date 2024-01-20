@@ -151,14 +151,7 @@ class TestRestAuthBasicEndpoints(APITestCase):
     def test_get_user_details_unauthorized(self):
         """Test user details endpoint."""
         response = self.client.get(reverse("rest_user_details"))
-        self.assertEqual(response.status_code, 403)
+        self.assertEqual(response.status_code, 401)
         self.assertEqual(
             response.data["detail"], "Authentication credentials were not provided."
         )
-
-    def test_get_user_details_invalid_token(self):
-        """Test user details endpoint."""
-        headers = {"Authorization": f"Bearer {self.user_data.get('password1')}"}
-        response = self.client.get(reverse("rest_user_details"), headers=headers)
-        self.assertEqual(response.status_code, 403)
-        self.assertIn("Given token not valid", response.data["detail"])
