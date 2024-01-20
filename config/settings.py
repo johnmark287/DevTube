@@ -33,24 +33,30 @@ ALLOWED_HOSTS = config("ALLOWED_HOSTS", default="127.0.0.1, localhost", cast=Csv
 # Application definition
 
 INSTALLED_APPS = [
+    # Django Core Apps
     "django.contrib.admin",
+    "django.contrib.sites",
     "django.contrib.auth",
     "django.contrib.contenttypes",
     "django.contrib.sessions",
     "django.contrib.messages",
     "django.contrib.staticfiles",
-    "django.contrib.sites",
+    # Third-party Packages
     "corsheaders",
     "rest_framework",
     "rest_framework.authtoken",
-    "dj_rest_auth",
-    "dj_rest_auth.registration",
+    # Authentication and Authorization
     "allauth",
     "allauth.account",
     "allauth.socialaccount",
     "allauth.socialaccount.providers.google",
+    # Custom Apps
     "accounts.apps.AccountsConfig",
+    # Django REST Auth
+    "dj_rest_auth",
+    "dj_rest_auth.registration",
 ]
+
 
 MIDDLEWARE = [
     "django.middleware.security.SecurityMiddleware",
@@ -163,16 +169,21 @@ else:
 
 REST_FRAMEWORK = {
     "DEFAULT_AUTHENTICATION_CLASSES": [
+        "rest_framework.authentication.BasicAuthentication",
         "rest_framework.authentication.SessionAuthentication",
         "rest_framework.authentication.TokenAuthentication",
-        "dj_rest_auth.jwt_auth.JWTCookieAuthentication",
+    ],
+    "DEFAULT_PERMISSION_CLASSES": [
+        "rest_framework.permissions.IsAuthenticated",
     ],
 }
-
 REST_AUTH = {
     "USE_JWT": True,
     "JWT_AUTH_COOKIE": "auth",
     "JWT_AUTH_REFRESH_COOKIE": "refresh-auth",
+    "JWT_AUTH_HTTPONLY": False,
+    "LOGIN_SERIALIZER": "accounts.serializers.MyLoginSerializer",
+    "PASSWORD_RESET_SERIALIZER": "accounts.serializers.MyPasswordResetSerializer",
 }
 
 SITE_ID = 1
@@ -194,6 +205,11 @@ SOCIALACCOUNT_PROVIDERS = {
     }
 }
 
+# AUTHENTICATION_BACKENDS = [
+#     "django.contrib.auth.backends.ModelBackend",
+#     "social_core.backends.google.GoogleOAuth2",
+# ]
+
 # Email settings
 if DEBUG:
     EMAIL_BACKEND = "django.core.mail.backends.console.EmailBackend"
@@ -206,3 +222,8 @@ EMAIL_PORT = config("EMAIL_PORT", default=587, cast=int)
 EMAIL_HOST_USER = config("EMAIL_HOST_USER", default="your_email_address")
 EMAIL_HOST_PASSWORD = config("EMAIL_HOST_PASSWORD", default="your_password")
 DEFAULT_FROM_EMAIL = "DevTube"
+
+# Frontend URLs
+FRONT_END_URLS = {
+    "PASSWORD_RESET": "http://localhost:3000/password-reset",
+}
