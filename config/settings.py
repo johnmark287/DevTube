@@ -45,16 +45,10 @@ INSTALLED_APPS = [
     "corsheaders",
     "rest_framework",
     "rest_framework.authtoken",
-    # Authentication and Authorization
-    "allauth",
-    "allauth.account",
-    "allauth.socialaccount",
-    "allauth.socialaccount.providers.google",
+    # Djoser
+    "djoser",
     # Custom Apps
     "accounts.apps.AccountsConfig",
-    # Django REST Auth
-    "dj_rest_auth",
-    "dj_rest_auth.registration",
 ]
 
 
@@ -67,7 +61,6 @@ MIDDLEWARE = [
     "django.contrib.auth.middleware.AuthenticationMiddleware",
     "django.contrib.messages.middleware.MessageMiddleware",
     "django.middleware.clickjacking.XFrameOptionsMiddleware",
-    "allauth.account.middleware.AccountMiddleware",
 ]
 
 ROOT_URLCONF = "config.urls"
@@ -149,13 +142,13 @@ USE_TZ = True
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/5.0/howto/static-files/
-
 STATIC_URL = "static/"
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/5.0/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
+
 
 AUTH_USER_MODEL = "accounts.CustomUser"
 
@@ -167,48 +160,25 @@ else:
         "CORS_ALLOWED_ORIGINS", default="https://example.com", cast=Csv()
     )
 
+# Rest framework settings
 REST_FRAMEWORK = {
-    "DEFAULT_AUTHENTICATION_CLASSES": [
-        "rest_framework.authentication.BasicAuthentication",
-        "rest_framework.authentication.SessionAuthentication",
+    "DEFAULT_PERMISSION_CLASSES": ("rest_framework.permissions.IsAuthenticated",),
+    "DEFAULT_AUTHENTICATION_CLASSES": (
+        "rest_framework_simplejwt.authentication.JWTAuthentication",
         "rest_framework.authentication.TokenAuthentication",
-    ],
-    "DEFAULT_PERMISSION_CLASSES": [
-        "rest_framework.permissions.IsAuthenticated",
-    ],
-}
-REST_AUTH = {
-    "USE_JWT": True,
-    "JWT_AUTH_COOKIE": "auth",
-    "JWT_AUTH_REFRESH_COOKIE": "refresh-auth",
-    "JWT_AUTH_HTTPONLY": False,
-    "LOGIN_SERIALIZER": "accounts.serializers.MyLoginSerializer",
-    "PASSWORD_RESET_SERIALIZER": "accounts.serializers.MyPasswordResetSerializer",
+    ),
 }
 
-SITE_ID = 1
+# Authentication settings
+AUTHENTICATION_BACKENDS = [
+    "django.contrib.auth.backends.ModelBackend",
+]
 
-# Allauth settings
-ACCOUNT_USER_MODEL_USERNAME_FIELD = None
-ACCOUNT_EMAIL_REQUIRED = True
-ACCOUNT_USERNAME_REQUIRED = False
-ACCOUNT_AUTHENTICATION_METHOD = "email"
+# Djoser settings
+DJOSER = {
+    # Add Djoser settings here
 
-# Google OAuth
-SOCIALACCOUNT_PROVIDERS = {
-    "google": {
-        "APP": {
-            "client_id": config("GOOGLE_CLIENT_ID"),
-            "secret": config("GOOGLE_CLIENT_SECRET"),
-            "key": "",
-        }
-    }
 }
-
-# AUTHENTICATION_BACKENDS = [
-#     "django.contrib.auth.backends.ModelBackend",
-#     "social_core.backends.google.GoogleOAuth2",
-# ]
 
 # Email settings
 if DEBUG:
@@ -225,5 +195,5 @@ DEFAULT_FROM_EMAIL = "DevTube"
 
 # Frontend URLs
 FRONT_END_URLS = {
-    "PASSWORD_RESET": "http://localhost:3000/password-reset",
+    
 }
