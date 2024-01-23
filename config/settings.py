@@ -177,7 +177,6 @@ AUTHENTICATION_BACKENDS = [
 # Djoser settings
 DJOSER = {
     # Add Djoser settings here
-
 }
 
 # Email settings
@@ -194,6 +193,4 @@ EMAIL_HOST_PASSWORD = config("EMAIL_HOST_PASSWORD", default="your_password")
 DEFAULT_FROM_EMAIL = "DevTube"
 
 # Frontend URLs
-FRONT_END_URLS = {
-    
-}
+FRONT_END_URLS = {}
