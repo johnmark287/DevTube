@@ -152,6 +152,8 @@ DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
 
 AUTH_USER_MODEL = "accounts.CustomUser"
 
+SITE_ID = 1
+
 # CORS
 if DEBUG:
     CORS_ORIGIN_ALLOW_ALL = True
@@ -177,6 +179,15 @@ AUTHENTICATION_BACKENDS = [
 # Djoser settings
 DJOSER = {
     # Add Djoser settings here
+    "PASSWORD_RESET_CONFIRM_URL": "auth/password-reset/{uid}/{token}",
+    "PASSWORD_CHANGED_EMAIL_CONFIRMATION": True,
+    "PASSWORD_RESET_CONFIRM_RETYPE": True,
+
+    "EMAIL": {
+        "password_reset": "accounts.emails.PasswordResetEmail",
+        "password_changed_confirmation": "accounts.emails.PasswordChangedConfirmationEmail",
+    }
+
 }
 
 # Email settings
