@@ -179,7 +179,6 @@ AUTHENTICATION_BACKENDS = [
 # Djoser settings
 DJOSER = {
     # Add Djoser settings here
-<<<<<<< HEAD
     'LOGIN_FIELD': 'email',
     'USER_CREATE_PASSWORD_RETYPE': True,
     'USERNAME_CHANGED_EMAIL_CONFIRMATION': True,
@@ -194,8 +193,7 @@ DJOSER = {
         'user_login': 'accounts.serializers.MyLoginSerializer',
         'reset_password': 'accounts.serializers.MyPasswordResetSerializer',
         'user_delete': 'djoser.serializers.UserDeleteSerializers',
-    }
-=======
+    },
     "PASSWORD_RESET_CONFIRM_URL": "auth/password-reset/{uid}/{token}",
     "PASSWORD_CHANGED_EMAIL_CONFIRMATION": True,
     "PASSWORD_RESET_CONFIRM_RETYPE": True,
@@ -204,8 +202,6 @@ DJOSER = {
         "password_reset": "accounts.emails.PasswordResetEmail",
         "password_changed_confirmation": "accounts.emails.PasswordChangedConfirmationEmail",
     }
-
->>>>>>> refs/remotes/origin/main
 }
 
 # Email settings
