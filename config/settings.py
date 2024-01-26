@@ -179,22 +179,19 @@ AUTHENTICATION_BACKENDS = [
 # Djoser settings
 DJOSER = {
     # Add Djoser settings here
-
     # User Create settings
     "USER_CREATE_PASSWORD_RETYPE": True,
     "ACTIVATION_URL": "auth/activate/{uid}/{token}",
     "SEND_ACTIVATION_EMAIL": True,
     "SEND_CONFIRMATION_EMAIL": True,
-
     # Password reset settings
     "PASSWORD_RESET_CONFIRM_URL": "auth/password-reset/{uid}/{token}",
     "PASSWORD_CHANGED_EMAIL_CONFIRMATION": True,
     "PASSWORD_RESET_CONFIRM_RETYPE": True,
-
     "EMAIL": {
         "password_reset": "accounts.emails.PasswordResetEmail",
         "password_changed_confirmation": "accounts.emails.PasswordChangedConfirmationEmail",
-    }
+    },
 }
 
 # Email settings
