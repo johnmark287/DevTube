@@ -179,20 +179,6 @@ AUTHENTICATION_BACKENDS = [
 # Djoser settings
 DJOSER = {
     # Add Djoser settings here
-    'LOGIN_FIELD': 'email',
-    'USER_CREATE_PASSWORD_RETYPE': True,
-    'USERNAME_CHANGED_EMAIL_CONFIRMATION': True,
-    'PASSWORD_CHANGED_EMAIL_CONFIRMATION': True,
-    'SEND_CONFIRMATION_EMAIL': True,
-    'SET_PASSWORD_RETYPE': True,
-    'PASSWORD_RESET_CONFIRM_URL': 'password/reset/confirm/confirm/{uid}/{token}',
-    'USERNAME_RESET_CONFIRM_URL': 'email/reset/confirm/confirm/{uid}/{token}',
-    'SERIALIZERS': {
-        'user_create': 'djoser.serializers.UserCreateSerializer',
-        'user_login': 'accounts.serializers.MyLoginSerializer',
-        'reset_password': 'accounts.serializers.MyPasswordResetSerializer',
-        'user_delete': 'djoser.serializers.UserDeleteSerializers',
-    },
     "PASSWORD_RESET_CONFIRM_URL": "auth/password-reset/{uid}/{token}",
     "PASSWORD_CHANGED_EMAIL_CONFIRMATION": True,
     "PASSWORD_RESET_CONFIRM_RETYPE": True,
