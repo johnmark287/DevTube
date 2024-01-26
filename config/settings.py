@@ -187,7 +187,6 @@ DJOSER = {
         "password_reset": "accounts.emails.PasswordResetEmail",
         "password_changed_confirmation": "accounts.emails.PasswordChangedConfirmationEmail",
     }
-
 }
 
 # Email settings
