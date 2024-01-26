@@ -7,7 +7,7 @@ class UserManagersTests(TestCase):
         User = get_user_model()
         user = User.objects.create_user(email="test@mail.com", password="password")
         self.assertEqual(user.email, "test@mail.com")
-        self.assertTrue(user.is_active)
+        self.assertFalse(user.is_active)
         self.assertFalse(user.is_staff)
         self.assertFalse(user.is_superuser)
 
@@ -24,7 +24,7 @@ class UserManagersTests(TestCase):
             email="admin@mail.com", password="password"
         )
         self.assertEqual(user.email, "admin@mail.com")
-        self.assertFalse(user.is_active)
+        self.assertTrue(user.is_active)
         self.assertTrue(user.is_staff)
         self.assertTrue(user.is_superuser)
 
