@@ -207,3 +207,30 @@ DEFAULT_FROM_EMAIL = "DevTube"
 # Frontend URLs
 FRONT_END_URLS = {}
 
+DJOSER = {
+    'HIDE_USERS': True,
+    'SERIALIZERS': {},
+    'PERMISSIONS': {},
+    'SEND_ACTIVATION_EMAIL': True,
+    'SERIALIZER': 'djoser.serializers.UserCreateSerializer',
+    'PASSWORD_RESET_CONFIRM_URL': '#/password/reset/confirm/{uid}/{token}',
+    'USERNAME_RESET_CONFIRM_URL': '#/username/reset/confirm/{uid}/{token}',
+    'ACTIVATION_URL': '#/activate/{uid}/{token}',
+    'SEND_CONFIRMATION_EMAIL': False,
+    'SET_PASSWORD_RETYPE': True,
+    'SET_USERNAME_RETYPE': True,
+    'PASSWORD_RESET_CONFIRM_RETYPE': True,
+    'USERNAME_RESET_CONFIRM_RETYPE': True,
+    'ACTIVATION_RETYPE': True,
+    'USER_CREATE_PASSWORD_RETYPE': True,
+    'SEND_ACTIVATION_NOTIFICATION': True,
+}
+
+# Djoser JWT settings
+
+DJOSER_JWT = {
+    'JWT_SECRET_KEY': config('DJANGO_JWT_SECRET_KEY', default='your-secret-key'),
+    'JWT_ALGORITHM': 'HS256',   
+    'JWT_REFRESH_EXPIRATION_DELTA': timedelta(),  
+}
+
