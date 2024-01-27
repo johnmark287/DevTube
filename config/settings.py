@@ -188,6 +188,8 @@ DJOSER = {
     "PASSWORD_RESET_CONFIRM_URL": "auth/password-reset/{uid}/{token}",
     "PASSWORD_CHANGED_EMAIL_CONFIRMATION": True,
     "PASSWORD_RESET_CONFIRM_RETYPE": True,
+    "USERNAME_RESET_CONFIRM_URL": "auth/email-reset/{uid}/{token}",
+    "USERNAME_CHANGED_EMAIL_CONFIRMATION": True,
     "EMAIL": {
         "password_reset": "accounts.emails.PasswordResetEmail",
         "password_changed_confirmation": "accounts.emails.PasswordChangedConfirmationEmail",

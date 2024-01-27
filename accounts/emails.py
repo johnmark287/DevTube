@@ -9,9 +9,9 @@ class PasswordChangedConfirmationEmail(email.PasswordChangedConfirmationEmail):
     template_name = "email/password_changed_confirmation.html"
 
 
-class ActivationEmail(email.ActivationEmail):
-    template_name = "email/activation.html"
+class UsernameChangedConfirmationEmail(email.UsernameChangedConfirmationEmail):
+    template_name = "email/username_changed_confirmation.html"
 
 
-class ConfirmationEmail(email.ConfirmationEmail):
-    template_name = "email/confirmation.html"
+class UsernameResetEmail(email.UsernameResetEmail):
+    template_name = "email/username_reset.html"
