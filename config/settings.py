@@ -223,8 +223,6 @@ FRONT_END_URLS = {}
 # Djoser JWT settings
 
 DJOSER_JWT = {
-    'JWT_SECRET_KEY': config('DJANGO_JWT_SECRET_KEY', default='your-secret-key'),
-    'JWT_ALGORITHM': 'HS256',   
-    'JWT_REFRESH_EXPIRATION_DELTA': timedelta(),  
+    'JWT_SECRET_KEY': config('DJANGO_JWT_SECRET_KEY', default='SECRET_KEY'),  
 }
 
