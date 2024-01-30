@@ -10,11 +10,10 @@ For the full list of settings and their values, see
 https://docs.djangoproject.com/en/5.0/ref/settings/
 """
 
+from datetime import timedelta
 from pathlib import Path
 
-from decouple import config, Csv
-from datetime import timedelta
-
+from decouple import Csv, config
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -190,24 +189,21 @@ DJOSER = {
     "PASSWORD_RESET_CONFIRM_URL": "auth/password-reset/{uid}/{token}",
     "PASSWORD_CHANGED_EMAIL_CONFIRMATION": True,
     "PASSWORD_RESET_CONFIRM_RETYPE": True,
+    # Username reset settings
     "USERNAME_RESET_CONFIRM_URL": "auth/email-reset/{uid}/{token}",
     "USERNAME_CHANGED_EMAIL_CONFIRMATION": True,
     "EMAIL": {
         "password_reset": "accounts.emails.PasswordResetEmail",
         "password_changed_confirmation": "accounts.emails.PasswordChangedConfirmationEmail",
+        "username_reset": "accounts.emails.UsernameResetEmail",
+        "username_changed_confirmation": "accounts.emails.UsernameChangedConfirmationEmail",
     },
-    'HIDE_USERS': True,
-    'ACTIVATION_URL': '#/activate/{uid}/{token}',
-    'ACTIVATION_RETYPE': True,
-    'USER_CREATE_PASSWORD_RETYPE': True,
-    'SEND_ACTIVATION_NOTIFICATION': True,
+    "HIDE_USERS": True,
+    "ACTIVATION_URL": "#/activate/{uid}/{token}",
+    "USER_CREATE_PASSWORD_RETYPE": True,
 }
 
-    
-    
-    
-    
-    
+
 # Email settings
 if DEBUG:
     EMAIL_BACKEND = "django.core.mail.backends.console.EmailBackend"
@@ -223,12 +219,3 @@ DEFAULT_FROM_EMAIL = "DevTube"
 
 # Frontend URLs
 FRONT_END_URLS = {}
-
-
-
-# Djoser JWT settings
-
-DJOSER_JWT = {
-    'JWT_SECRET_KEY': config('DJANGO_JWT_SECRET_KEY', default='SECRET_KEY'),  
-}
-
