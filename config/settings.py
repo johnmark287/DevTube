@@ -168,7 +168,6 @@ REST_FRAMEWORK = {
     "DEFAULT_PERMISSION_CLASSES": ("rest_framework.permissions.IsAuthenticated",),
     "DEFAULT_AUTHENTICATION_CLASSES": (
         "rest_framework_simplejwt.authentication.JWTAuthentication",
-        "rest_framework.authentication.TokenAuthentication",
     ),
 }
 
@@ -199,6 +198,7 @@ DJOSER = {
         "username_changed_confirmation": "accounts.emails.UsernameChangedConfirmationEmail",
     },
     "HIDE_USERS": True,
+    "TOKEN_MODEL": None,
     "ACTIVATION_URL": "#/activate/{uid}/{token}",
     "USER_CREATE_PASSWORD_RETYPE": True,
 }
@@ -215,7 +215,7 @@ EMAIL_HOST = config("EMAIL_HOST", default="smtp.gmail.com")
 EMAIL_PORT = config("EMAIL_PORT", default=587, cast=int)
 EMAIL_HOST_USER = config("EMAIL_HOST_USER", default="your_email_address")
 EMAIL_HOST_PASSWORD = config("EMAIL_HOST_PASSWORD", default="your_password")
-DEFAULT_FROM_EMAIL = "DevTube"
+DEFAULT_FROM_EMAIL = config("DEFAULT_FROM_EMAIL", default="your_email_address")
 
 # Frontend URLs
 FRONT_END_URLS = {}
