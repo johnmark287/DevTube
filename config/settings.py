@@ -12,7 +12,9 @@ https://docs.djangoproject.com/en/5.0/ref/settings/
 
 from pathlib import Path
 
-from decouple import Csv, config
+from decouple import config, Csv
+from datetime import timedelta
+
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -194,8 +196,18 @@ DJOSER = {
         "password_reset": "accounts.emails.PasswordResetEmail",
         "password_changed_confirmation": "accounts.emails.PasswordChangedConfirmationEmail",
     },
+    'HIDE_USERS': True,
+    'ACTIVATION_URL': '#/activate/{uid}/{token}',
+    'ACTIVATION_RETYPE': True,
+    'USER_CREATE_PASSWORD_RETYPE': True,
+    'SEND_ACTIVATION_NOTIFICATION': True,
 }
 
+    
+    
+    
+    
+    
 # Email settings
 if DEBUG:
     EMAIL_BACKEND = "django.core.mail.backends.console.EmailBackend"
@@ -211,3 +223,12 @@ DEFAULT_FROM_EMAIL = "DevTube"
 
 # Frontend URLs
 FRONT_END_URLS = {}
+
+
+
+# Djoser JWT settings
+
+DJOSER_JWT = {
+    'JWT_SECRET_KEY': config('DJANGO_JWT_SECRET_KEY', default='SECRET_KEY'),  
+}
+
