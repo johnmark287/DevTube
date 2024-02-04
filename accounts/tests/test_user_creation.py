@@ -1,8 +1,17 @@
 from django.contrib.auth import get_user_model
 from django.test import TestCase
 
+"""
+Tests for the User model and its functions.
+"""
 
 class UserManagersTests(TestCase):
+    """
+    Tests for the following functions:
+        If user is created suncessfully.
+        The values entered in fields email, password, is_active, is_stuff and is_supperuser
+        when creating the user object.
+    """
     def test_create_user(self):
         User = get_user_model()
         user = User.objects.create_user(email="test@mail.com", password="password")
@@ -18,6 +27,12 @@ class UserManagersTests(TestCase):
         with self.assertRaises(ValueError):
             User.objects.create_user(email="", password="foo")
 
+    """
+    Tests for the following functions:
+        If supperuser is created suncessfully.
+        The values entered in fields email, password, is_active, is_stuff and is_supperuser
+        when creating the superuser for admin functions
+    """
     def test_create_superuser(self):
         User = get_user_model()
         user = User.objects.create_superuser(
