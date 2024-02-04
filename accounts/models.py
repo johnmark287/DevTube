@@ -5,6 +5,9 @@ from django.utils.translation import gettext_lazy as _
 
 from .managers import CustomUserManager
 
+""" 
+Custom User Model schema for defining how the user will be created in the database.
+"""
 
 class CustomUser(AbstractBaseUser, PermissionsMixin):
     first_name = models.CharField(_("First Name"), max_length=50)
